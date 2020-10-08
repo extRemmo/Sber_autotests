@@ -2,15 +2,14 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
@@ -20,7 +19,7 @@ public class InsuranceTest {
 
     @Before
     public void beforeTest(){
-        System.setProperty("webdriver.chrome.driver", "drv/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "drv/chromedriver1.exe");
         baseURL = "http://www.sberbank.ru/ru/person";
         driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -29,9 +28,9 @@ public class InsuranceTest {
     }
 
     @Test
-    public void  testInsurance() {
+    public void  testInsurance() throws Exception {
 
-        System.setProperty("webdriver.chrome.driver", "drv/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "drv/chromedriver1.exe");
         driver.findElement(By.xpath("//*[text() = 'Страхование'][contains(@class, 'kitt-top')]")).click();
         driver.findElement(By.xpath("//*[text() = 'СберСтрахование'][contains(@class, 'kitt-top')]")).click();
         Wait<WebDriver> wait = new WebDriverWait(driver, 5, 1000);
@@ -43,12 +42,33 @@ public class InsuranceTest {
 
         driver.findElement(By.xpath("//a[contains(@href, 'travel')]//span[contains(text(), 'Оформить онлайн')]")).click();
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        Thread.sleep(8000);
         //Wait<WebDriver> wait2 = new WebDriverWait(driver, 5, 1000);
         //WebElement online = driver.findElement(By.xpath("//a[contains(text(), 'Оформить онлайн')]"));
         //wait2.until(ExpectedConditions.visibilityOf(online)).click();
-        //driver.findElement(By.cssSelector("#app > article > div:nth-child(4) > div > div > a")).click();
+        ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
+        driver.switchTo().window(tabs2.get(1));
 
+        WebElement applyOnlineBtn = driver.findElement(By.xpath("//a[@class='s-btn'][contains(text(),'Оформить онлайн')]"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", applyOnlineBtn);
+
+        try{
+            applyOnlineBtn.click();
+        }catch (WebDriverException e){
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", applyOnlineBtn);
+        }
+
+        //На вкладке – Выбор полиса  выбрать сумму страховой защиты – Минимальная
+        driver.findElement(By.xpath("//h3[contains(text(), 'Минимальная')]")).click();
+        driver.findElement(By.xpath("//*[contains(text(), 'Оформить')]")).click();
+
+        Thread.sleep(8000);
+        WebElement titleReg = driver.findElement(By.xpath("//*[@class='col-4 step-element active']"));
+        wait.until(ExpectedConditions.visibilityOf(titleReg));
+        Assert.assertEquals("Оформление", titleReg.getText());
+
+
+        //System.out.println(driver.getTitle());
     }
 
     @After
