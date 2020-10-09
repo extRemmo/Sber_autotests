@@ -43,9 +43,6 @@ public class InsuranceTest {
         driver.findElement(By.xpath("//a[contains(@href, 'travel')]//span[contains(text(), 'Оформить онлайн')]")).click();
 
         Thread.sleep(8000);
-        //Wait<WebDriver> wait2 = new WebDriverWait(driver, 5, 1000);
-        //WebElement online = driver.findElement(By.xpath("//a[contains(text(), 'Оформить онлайн')]"));
-        //wait2.until(ExpectedConditions.visibilityOf(online)).click();
         ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs2.get(1));
 
@@ -60,15 +57,59 @@ public class InsuranceTest {
 
         //На вкладке – Выбор полиса  выбрать сумму страховой защиты – Минимальная
         driver.findElement(By.xpath("//h3[contains(text(), 'Минимальная')]")).click();
-        driver.findElement(By.xpath("//*[contains(text(), 'Оформить')]")).click();
+        Thread.sleep(5000);
+        driver.findElement(By.xpath("//button[contains(text(), 'Оформить')]")).click();
 
-        Thread.sleep(8000);
-        WebElement titleReg = driver.findElement(By.xpath("//*[@class='col-4 step-element active']"));
+
+        Thread.sleep(5000);
+        WebElement titleReg = driver.findElement(By.xpath("//*[@class='col-4 step-element active']/a[text()='Оформление']"));
         wait.until(ExpectedConditions.visibilityOf(titleReg));
         Assert.assertEquals("Оформление", titleReg.getText());
 
+        fillField (By.id("surname_vzr_ins_0"), "Грачев");
+        fillField (By.id("name_vzr_ins_0"), "Дмитрий");
+        fillField (By.id("birthDate_vzr_ins_0"), "29121993");
 
+        driver.findElement(By.id("person_lastName")).click();
+        fillField (By.id("person_lastName"), "Грачев");
+        fillField (By.id("person_firstName"), "Дмитрий");
+        fillField (By.id("person_middleName"), "Евгеньевич");
+        fillField (By.id("person_birthDate"), "29121993");
+        //driver.findElement(By.xpath("//label[text()='Мужской']")).click();
+
+        driver.findElement(By.id("passportSeries")).click();
+        fillField (By.id("passportSeries"), "8888");
+        fillField (By.id("passportNumber"), "999999");
+        fillField (By.id("documentDate"), "01012019");
+        driver.findElement(By.id("documentIssue")).click();
+        fillField (By.id("documentIssue"), "Отделением УФМС России");
+
+        //проверим что поля заполнены верными значениями
+        Assert.assertEquals("Грачев", driver.findElement(By.id("surname_vzr_ins_0")).getAttribute("value"));
+        Assert.assertEquals("Дмитрий", driver.findElement(By.id("name_vzr_ins_0")).getAttribute("value"));
+        Assert.assertEquals("29.12.1993", driver.findElement(By.id("birthDate_vzr_ins_0")).getAttribute("value"));
+
+        Assert.assertEquals("Грачев", driver.findElement(By.id("person_lastName")).getAttribute("value"));
+        Assert.assertEquals("Дмитрий", driver.findElement(By.id("person_firstName")).getAttribute("value"));
+        Assert.assertEquals("Евгеньевич", driver.findElement(By.id("person_middleName")).getAttribute("value"));
+        Assert.assertEquals("29.12.1993", driver.findElement(By.id("person_birthDate")).getAttribute("value"));
+
+        Assert.assertEquals("8888", driver.findElement(By.id("passportSeries")).getAttribute("value"));
+        Assert.assertEquals("999999", driver.findElement(By.id("passportNumber")).getAttribute("value"));
+        Assert.assertEquals("01.01.2019", driver.findElement(By.id("documentDate")).getAttribute("value"));
+        Assert.assertEquals("Отделением УФМС России", driver.findElement(By.id("documentIssue")).getAttribute("value"));
+
+        driver.findElement(By.xpath("//button[contains(text(), 'Продолжить')]")).click();
+
+        Assert.assertEquals("При заполнении данных произошла ошибка",
+                driver.findElement(By.xpath("//*[@class = 'alert-form alert-form-error']")).getText());
         //System.out.println(driver.getTitle());
+
+    }
+
+    public void fillField(By locator, String value) {
+        driver.findElement(locator).clear();
+        driver.findElement(locator).sendKeys(value);
     }
 
     @After
