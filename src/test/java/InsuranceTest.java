@@ -4,11 +4,13 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
@@ -19,7 +21,7 @@ public class InsuranceTest {
 
     @Before
     public void beforeTest(){
-        System.setProperty("webdriver.chrome.driver", "drv/chromedriver1.exe");
+        System.setProperty("webdriver.chrome.driver", "drv/chromedriver.exe");
         baseURL = "http://www.sberbank.ru/ru/person";
         driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -30,7 +32,7 @@ public class InsuranceTest {
     @Test
     public void  testInsurance() throws Exception {
 
-        System.setProperty("webdriver.chrome.driver", "drv/chromedriver1.exe");
+        System.setProperty("webdriver.chrome.driver", "drv/chromedriver.exe");
         driver.findElement(By.xpath("//*[text() = 'Страхование'][contains(@class, 'kitt-top')]")).click();
         driver.findElement(By.xpath("//*[text() = 'СберСтрахование'][contains(@class, 'kitt-top')]")).click();
         Wait<WebDriver> wait = new WebDriverWait(driver, 5, 1000);
@@ -74,8 +76,12 @@ public class InsuranceTest {
         fillField (By.id("person_lastName"), "Грачев");
         fillField (By.id("person_firstName"), "Дмитрий");
         fillField (By.id("person_middleName"), "Евгеньевич");
-        fillField (By.id("person_birthDate"), "29121993");
-        //driver.findElement(By.xpath("//label[text()='Мужской']")).click();
+        fillField (By.id("person_birthDate"), "01.10.2002");
+
+        WebElement element = driver.findElement(By.xpath("//div[@class='btn-group']/label[text()='Мужской']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).click().perform();
+        //driver.findElement(By.xpath("//div[@class='btn-group']/label[text()='Мужской']")).click();
 
         driver.findElement(By.id("passportSeries")).click();
         fillField (By.id("passportSeries"), "8888");
@@ -92,7 +98,7 @@ public class InsuranceTest {
         Assert.assertEquals("Грачев", driver.findElement(By.id("person_lastName")).getAttribute("value"));
         Assert.assertEquals("Дмитрий", driver.findElement(By.id("person_firstName")).getAttribute("value"));
         Assert.assertEquals("Евгеньевич", driver.findElement(By.id("person_middleName")).getAttribute("value"));
-        Assert.assertEquals("29.12.1993", driver.findElement(By.id("person_birthDate")).getAttribute("value"));
+        Assert.assertEquals("01.10.2002", driver.findElement(By.id("person_birthDate")).getAttribute("value"));
 
         Assert.assertEquals("8888", driver.findElement(By.id("passportSeries")).getAttribute("value"));
         Assert.assertEquals("999999", driver.findElement(By.id("passportNumber")).getAttribute("value"));
