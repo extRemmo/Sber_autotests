@@ -15,24 +15,13 @@ import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
-public class InsuranceTest {
-    WebDriver driver;
-    String baseURL;
+public class InsuranceTest extends BaseTest {
 
-    @Before
-    public void beforeTest(){
-        System.setProperty("webdriver.chrome.driver", "drv/chromedriver.exe");
-        baseURL = "http://www.sberbank.ru/ru/person";
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get(baseURL);
-
-    }
 
     @Test
     public void  testInsurance() throws Exception {
+        driver.get(baseUrl);
 
-        System.setProperty("webdriver.chrome.driver", "drv/chromedriver.exe");
         driver.findElement(By.xpath("//*[text() = 'Страхование'][contains(@class, 'kitt-top')]")).click();
         driver.findElement(By.xpath("//*[text() = 'СберСтрахование'][contains(@class, 'kitt-top')]")).click();
         Wait<WebDriver> wait = new WebDriverWait(driver, 5, 1000);
@@ -112,16 +101,5 @@ public class InsuranceTest {
 
 
     }
-
-    public void fillField(By locator, String value) {
-        driver.findElement(locator).clear();
-        driver.findElement(locator).sendKeys(value);
-    }
-
-    @After
-    public void afterTest(){
-        driver.quit();
-    }
-
 
 }
