@@ -103,7 +103,7 @@ public class InsuranceTest {
 
         Assert.assertEquals("При заполнении данных произошла ошибка",
                 driver.findElement(By.xpath("//*[@class = 'alert-form alert-form-error']")).getText());
-        //System.out.println(driver.getTitle());
+
 
     }
 
