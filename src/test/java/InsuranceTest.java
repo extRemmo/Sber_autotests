@@ -1,7 +1,4 @@
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -9,16 +6,14 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import javax.swing.*;
 import java.util.ArrayList;
-import java.util.NoSuchElementException;
-import java.util.concurrent.TimeUnit;
+
 
 public class InsuranceTest extends BaseTest {
 
 
     @Test
+    //@Ignore
     public void  testInsurance() throws Exception {
         driver.get(baseUrl);
 
@@ -70,7 +65,7 @@ public class InsuranceTest extends BaseTest {
         WebElement element = driver.findElement(By.xpath("//div[@class='btn-group']/label[text()='Мужской']"));
         Actions actions = new Actions(driver);
         actions.moveToElement(element).click().perform();
-        //driver.findElement(By.xpath("//div[@class='btn-group']/label[text()='Мужской']")).click();
+
 
         driver.findElement(By.id("passportSeries")).click();
         fillField (By.id("passportSeries"), "8888");
