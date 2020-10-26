@@ -3,43 +3,29 @@ package PObjects;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import steps.BaseSteps;
 
 
-public class TravelOnlinePage  {
+public class TravelOnlinePage extends BaseSteps {
 
-    //WebDriver driver;
-    @FindBy(xpath = "//div[@class='s-content-section__button-block']//a[@class='s-btn'][contains(text(),'Оформить онлайн')]")
+    @FindBy(xpath = "//a[@class='s-hero-banner__btn s-btn']")
     public WebElement applyOnlineButton;
 
 
-    public TravelOnlinePage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-
-        /*Wait<WebDriver> wait = new WebDriverWait(driver, 5, 500);
-        wait.until(ExpectedConditions.visibilityOf(applyOnlineButton));*/
-
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", applyOnlineButton);
-
-        try{
-            applyOnlineButton.click();
-        }catch (WebDriverException e){
-            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", applyOnlineButton);
-        }
+    public TravelOnlinePage () {
+        PageFactory.initElements(BaseSteps.getDriver(), this);
     }
 
-    /*public void selectTravelMenu2() {
-
-        //applyOnlineButton.findElement(By.xpath(".//a[@class='s-btn'][contains(text(),'"+menuItem+"')]"));
-        /*((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", applyOnlineButton);
-
-        try{
-            applyOnlineButton.click();
-        }catch (WebDriverException e){
-            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", applyOnlineButton);
-        }*/
-
-
+    public void selectTravelOnline(String menuItem) {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@class='s-hero-banner__btn s-btn']")));
+        applyOnlineButton.findElement(By.xpath("//a[@class='s-hero-banner__btn s-btn' and contains(text(),'"+menuItem+"')]")).click();
+    }
 }
+
+
 
 
 
