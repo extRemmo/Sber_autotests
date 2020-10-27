@@ -1,0 +1,114 @@
+---- AspectJ Properties ---
+AspectJ Compiler 1.8.9 built on Monday Mar 14, 2016 at 21:18:16 GMT
+---- Dump Properties ---
+Dump file: ajcore.20201026.211151.716.txt
+Dump reason: org.aspectj.apache.bcel.classfile.ClassFormatException
+Dump on exception: true
+Dump at exit condition: abort
+---- Exception Information ---
+org.aspectj.apache.bcel.classfile.ClassFormatException: File: 'module-info': Invalid byte tag in constant pool: 19
+	at org.aspectj.apache.bcel.classfile.ClassParser.readConstantPool(ClassParser.java:192)
+	at org.aspectj.apache.bcel.classfile.ClassParser.parse(ClassParser.java:131)
+	at org.aspectj.weaver.bcel.Utility.makeJavaClass(Utility.java:472)
+	at org.aspectj.weaver.bcel.BcelWorld.addSourceObjectType(BcelWorld.java:512)
+	at org.aspectj.weaver.tools.WeavingAdaptor.ensureDelegateInitialized(WeavingAdaptor.java:513)
+	at org.aspectj.weaver.tools.WeavingAdaptor$WeavingClassFileProvider.<init>(WeavingAdaptor.java:843)
+	at org.aspectj.weaver.tools.WeavingAdaptor.getWovenBytes(WeavingAdaptor.java:526)
+	at org.aspectj.weaver.tools.WeavingAdaptor.weaveClass(WeavingAdaptor.java:363)
+	at org.aspectj.weaver.loadtime.Aj.preProcess(Aj.java:121)
+	at org.aspectj.weaver.loadtime.ClassPreProcessorAgentAdapter.transform(ClassPreProcessorAgentAdapter.java:54)
+	at java.instrument/java.lang.instrument.ClassFileTransformer.transform(ClassFileTransformer.java:246)
+	at java.instrument/sun.instrument.TransformerManager.transform(TransformerManager.java:188)
+	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:563)
+	at java.base/java.lang.ClassLoader.defineClass1(Native Method)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1017)
+	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:151)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:821)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull(BuiltinClassLoader.java:719)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:642)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:600)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:178)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:522)
+	at cucumber.runtime.io.ResourceLoaderClassFinder.loadClass(ResourceLoaderClassFinder.java:38)
+	at cucumber.runtime.io.ResourceLoaderClassFinder.getDescendants(ResourceLoaderClassFinder.java:26)
+	at cucumber.runtime.java.MethodScanner.scan(MethodScanner.java:34)
+	at cucumber.runtime.java.JavaBackend.loadGlue(JavaBackend.java:89)
+	at cucumber.runtime.Runtime.<init>(Runtime.java:92)
+	at cucumber.runtime.Runtime.<init>(Runtime.java:70)
+	at cucumber.runtime.Runtime.<init>(Runtime.java:66)
+	at cucumber.api.junit.Cucumber.createRuntime(Cucumber.java:80)
+	at cucumber.api.junit.Cucumber.<init>(Cucumber.java:59)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.junit.internal.builders.AnnotatedBuilder.buildRunner(AnnotatedBuilder.java:104)
+	at org.junit.internal.builders.AnnotatedBuilder.runnerForClass(AnnotatedBuilder.java:86)
+	at org.junit.runners.model.RunnerBuilder.safeRunnerForClass(RunnerBuilder.java:59)
+	at org.junit.internal.builders.AllDefaultPossibilitiesBuilder.runnerForClass(AllDefaultPossibilitiesBuilder.java:26)
+	at org.junit.runners.model.RunnerBuilder.safeRunnerForClass(RunnerBuilder.java:59)
+	at org.junit.internal.requests.ClassRequest.getRunner(ClassRequest.java:33)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:49)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58)
+---- System Properties ---
+java.specification.version=14
+sun.cpu.isalist=amd64
+sun.jnu.encoding=Cp1251
+java.class.path=C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.3.4\lib\idea_rt.jar;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.3.4\plugins\junit\lib\junit5-rt.jar;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.3.4\plugins\junit\lib\junit-rt.jar;C:\Users\DGrachev\IdeaProjects\Sber_autotestss\target\test-classes;C:\Users\DGrachev\IdeaProjects\Sber_autotestss\target\classes;C:\Users\DGrachev\.m2\repository\org\seleniumhq\selenium\selenium-java\3.141.59\selenium-java-3.141.59.jar;C:\Users\DGrachev\.m2\repository\org\seleniumhq\selenium\selenium-api\3.141.59\selenium-api-3.141.59.jar;C:\Users\DGrachev\.m2\repository\org\seleniumhq\selenium\selenium-chrome-driver\3.141.59\selenium-chrome-driver-3.141.59.jar;C:\Users\DGrachev\.m2\repository\org\seleniumhq\selenium\selenium-edge-driver\3.141.59\selenium-edge-driver-3.141.59.jar;C:\Users\DGrachev\.m2\repository\org\seleniumhq\selenium\selenium-firefox-driver\3.141.59\selenium-firefox-driver-3.141.59.jar;C:\Users\DGrachev\.m2\repository\org\seleniumhq\selenium\selenium-ie-driver\3.141.59\selenium-ie-driver-3.141.59.jar;C:\Users\DGrachev\.m2\repository\org\seleniumhq\selenium\selenium-opera-driver\3.141.59\selenium-opera-driver-3.141.59.jar;C:\Users\DGrachev\.m2\repository\org\seleniumhq\selenium\selenium-remote-driver\3.141.59\selenium-remote-driver-3.141.59.jar;C:\Users\DGrachev\.m2\repository\org\seleniumhq\selenium\selenium-safari-driver\3.141.59\selenium-safari-driver-3.141.59.jar;C:\Users\DGrachev\.m2\repository\org\seleniumhq\selenium\selenium-support\3.141.59\selenium-support-3.141.59.jar;C:\Users\DGrachev\.m2\repository\net\bytebuddy\byte-buddy\1.8.15\byte-buddy-1.8.15.jar;C:\Users\DGrachev\.m2\repository\org\apache\commons\commons-exec\1.3\commons-exec-1.3.jar;C:\Users\DGrachev\.m2\repository\com\google\guava\guava\25.0-jre\guava-25.0-jre.jar;C:\Users\DGrachev\.m2\repository\com\google\code\findbugs\jsr305\1.3.9\jsr305-1.3.9.jar;C:\Users\DGrachev\.m2\repository\org\checkerframework\checker-compat-qual\2.0.0\checker-compat-qual-2.0.0.jar;C:\Users\DGrachev\.m2\repository\com\google\errorprone\error_prone_annotations\2.1.3\error_prone_annotations-2.1.3.jar;C:\Users\DGrachev\.m2\repository\com\google\j2objc\j2objc-annotations\1.1\j2objc-annotations-1.1.jar;C:\Users\DGrachev\.m2\repository\org\codehaus\mojo\animal-sniffer-annotations\1.14\animal-sniffer-annotations-1.14.jar;C:\Users\DGrachev\.m2\repository\com\squareup\okhttp3\okhttp\3.11.0\okhttp-3.11.0.jar;C:\Users\DGrachev\.m2\repository\com\squareup\okio\okio\1.14.0\okio-1.14.0.jar;C:\Users\DGrachev\.m2\repository\junit\junit\4.12\junit-4.12.jar;C:\Users\DGrachev\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\DGrachev\.m2\repository\ru\yandex\qatools\allure\allure-cucumber-jvm-adaptor\1.6.4\allure-cucumber-jvm-adaptor-1.6.4.jar;C:\Users\DGrachev\.m2\repository\ru\yandex\qatools\allure\allure-java-aspects\1.5.2\allure-java-aspects-1.5.2.jar;C:\Users\DGrachev\.m2\repository\ru\yandex\qatools\allure\allure-java-adaptor-api\1.5.2\allure-java-adaptor-api-1.5.2.jar;C:\Users\DGrachev\.m2\repository\ru\yandex\qatools\allure\allure-java-annotations\1.5.2\allure-java-annotations-1.5.2.jar;C:\Users\DGrachev\.m2\repository\org\apache\tika\tika-core\1.7\tika-core-1.7.jar;C:\Users\DGrachev\.m2\repository\org\aspectj\aspectjrt\1.8.3\aspectjrt-1.8.3.jar;C:\Users\DGrachev\.m2\repository\ru\yandex\qatools\allure\allure-commons\1.5.2\allure-commons-1.5.2.jar;C:\Users\DGrachev\.m2\repository\ru\yandex\qatools\allure\allure-model\1.5.2\allure-model-1.5.2.jar;C:\Users\DGrachev\.m2\repository\org\jvnet\jaxb2_commons\jaxb2-basics-runtime\0.9.3\jaxb2-basics-runtime-0.9.3.jar;C:\Users\DGrachev\.m2\repository\ru\qatools\commons\properties\2.0.RC5\properties-2.0.RC5.jar;C:\Users\DGrachev\.m2\repository\info\cukes\cucumber-junit\1.2.5\cucumber-junit-1.2.5.jar;C:\Users\DGrachev\.m2\repository\info\cukes\cucumber-core\1.2.5\cucumber-core-1.2.5.jar;C:\Users\DGrachev\.m2\repository\info\cukes\cucumber-html\0.2.3\cucumber-html-0.2.3.jar;C:\Users\DGrachev\.m2\repository\info\cukes\cucumber-jvm-deps\1.0.5\cucumber-jvm-deps-1.0.5.jar;C:\Users\DGrachev\.m2\repository\org\apache\commons\commons-lang3\3.3.2\commons-lang3-3.3.2.jar;C:\Users\DGrachev\.m2\repository\info\cukes\gherkin\2.12.2\gherkin-2.12.2.jar;C:\Users\DGrachev\.m2\repository\commons-logging\commons-logging-api\1.1\commons-logging-api-1.1.jar;C:\Users\DGrachev\.m2\repository\org\slf4j\slf4j-simple\1.7.21\slf4j-simple-1.7.21.jar;C:\Users\DGrachev\.m2\repository\org\slf4j\slf4j-api\1.7.21\slf4j-api-1.7.21.jar;C:\Users\DGrachev\.m2\repository\org\aspectj\aspectjweaver\1.8.9\aspectjweaver-1.8.9.jar;C:\Users\DGrachev\.m2\repository\javax\xml\bind\jaxb-api\2.3.1\jaxb-api-2.3.1.jar;C:\Users\DGrachev\.m2\repository\javax\activation\javax.activation-api\1.2.0\javax.activation-api-1.2.0.jar;C:\Users\DGrachev\.m2\repository\org\apache\maven\plugins\maven-dependency-plugin\3.1.2\maven-dependency-plugin-3.1.2.jar;C:\Users\DGrachev\.m2\repository\org\apache\maven\maven-artifact\3.0\maven-artifact-3.0.jar;C:\Users\DGrachev\.m2\repository\org\apache\maven\maven-plugin-api\3.0\maven-plugin-api-3.0.jar;C:\Users\DGrachev\.m2\repository\org\sonatype\sisu\sisu-inject-plexus\1.4.2\sisu-inject-plexus-1.4.2.jar;C:\Users\DGrachev\.m2\repository\org\sonatype\sisu\sisu-inject-bean\1.4.2\sisu-inject-bean-1.4.2.jar;C:\Users\DGrachev\.m2\repository\org\sonatype\sisu\sisu-guice\2.1.7\sisu-guice-2.1.7-noaop.jar;C:\Users\DGrachev\.m2\repository\org\apache\maven\maven-model\3.0\maven-model-3.0.jar;C:\Users\DGrachev\.m2\repository\org\apache\maven\maven-core\3.0\maven-core-3.0.jar;C:\Users\DGrachev\.m2\repository\org\apache\maven\maven-settings\3.0\maven-settings-3.0.jar;C:\Users\DGrachev\.m2\repository\org\apache\maven\maven-settings-builder\3.0\maven-settings-builder-3.0.jar;C:\Users\DGrachev\.m2\repository\org\apache\maven\maven-model-builder\3.0\maven-model-builder-3.0.jar;C:\Users\DGrachev\.m2\repository\org\apache\maven\maven-aether-provider\3.0\maven-aether-provider-3.0.jar;C:\Users\DGrachev\.m2\repository\org\sonatype\aether\aether-impl\1.7\aether-impl-1.7.jar;C:\Users\DGrachev\.m2\repository\org\sonatype\aether\aether-spi\1.7\aether-spi-1.7.jar;C:\Users\DGrachev\.m2\repository\org\sonatype\aether\aether-api\1.7\aether-api-1.7.jar;C:\Users\DGrachev\.m2\repository\org\sonatype\aether\aether-util\1.7\aether-util-1.7.jar;C:\Users\DGrachev\.m2\repository\org\codehaus\plexus\plexus-interpolation\1.14\plexus-interpolation-1.14.jar;C:\Users\DGrachev\.m2\repository\org\codehaus\plexus\plexus-classworlds\2.2.3\plexus-classworlds-2.2.3.jar;C:\Users\DGrachev\.m2\repository\org\codehaus\plexus\plexus-component-annotations\1.5.5\plexus-component-annotations-1.5.5.jar;C:\Users\DGrachev\.m2\repository\org\sonatype\plexus\plexus-sec-dispatcher\1.3\plexus-sec-dispatcher-1.3.jar;C:\Users\DGrachev\.m2\repository\org\sonatype\plexus\plexus-cipher\1.4\plexus-cipher-1.4.jar;C:\Users\DGrachev\.m2\repository\org\apache\maven\maven-repository-metadata\3.0\maven-repository-metadata-3.0.jar;C:\Users\DGrachev\.m2\repository\org\apache\maven\reporting\maven-reporting-api\3.0\maven-reporting-api-3.0.jar;C:\Users\DGrachev\.m2\repository\org\apache\maven\reporting\maven-reporting-impl\3.0.0\maven-reporting-impl-3.0.0.jar;C:\Users\DGrachev\.m2\repository\org\apache\maven\doxia\doxia-decoration-model\1.7.4\doxia-decoration-model-1.7.4.jar;C:\Users\DGrachev\.m2\repository\commons-io\commons-io\2.6\commons-io-2.6.jar;C:\Users\DGrachev\.m2\repository\org\apache\maven\doxia\doxia-sink-api\1.9\doxia-sink-api-1.9.jar;C:\Users\DGrachev\.m2\repository\org\apache\maven\doxia\doxia-logging-api\1.9\doxia-logging-api-1.9.jar;C:\Users\DGrachev\.m2\repository\org\apache\maven\doxia\doxia-core\1.9\doxia-core-1.9.jar;C:\Users\DGrachev\.m2\repository\org\codehaus\plexus\plexus-container-default\1.7.1\plexus-container-default-1.7.1.jar;C:\Users\DGrachev\.m2\repository\org\apache\xbean\xbean-reflect\3.7\xbean-reflect-3.7.jar;C:\Users\DGrachev\.m2\repository\com\google\collections\google-collections\1.0\google-collections-1.0.jar;C:\Users\DGrachev\.m2\repository\org\apache\httpcomponents\httpclient\4.5.8\httpclient-4.5.8.jar;C:\Users\DGrachev\.m2\repository\commons-logging\commons-logging\1.2\commons-logging-1.2.jar;C:\Users\DGrachev\.m2\repository\org\apache\httpcomponents\httpcore\4.4.11\httpcore-4.4.11.jar;C:\Users\DGrachev\.m2\repository\org\apache\maven\doxia\doxia-site-renderer\1.9\doxia-site-renderer-1.9.jar;C:\Users\DGrachev\.m2\repository\org\apache\maven\doxia\doxia-skin-model\1.9\doxia-skin-model-1.9.jar;C:\Users\DGrachev\.m2\repository\org\apache\maven\doxia\doxia-module-xhtml\1.9\doxia-module-xhtml-1.9.jar;C:\Users\DGrachev\.m2\repository\org\apache\maven\doxia\doxia-module-xhtml5\1.9\doxia-module-xhtml5-1.9.jar;C:\Users\DGrachev\.m2\repository\org\codehaus\plexus\plexus-i18n\1.0-beta-10\plexus-i18n-1.0-beta-10.jar;C:\Users\DGrachev\.m2\repository\org\codehaus\plexus\plexus-velocity\1.2\plexus-velocity-1.2.jar;C:\Users\DGrachev\.m2\repository\org\apache\velocity\velocity\1.7\velocity-1.7.jar;C:\Users\DGrachev\.m2\repository\org\apache\velocity\velocity-tools\2.0\velocity-tools-2.0.jar;C:\Users\DGrachev\.m2\repository\commons-beanutils\commons-beanutils\1.7.0\commons-beanutils-1.7.0.jar;C:\Users\DGrachev\.m2\repository\commons-digester\commons-digester\1.8\commons-digester-1.8.jar;C:\Users\DGrachev\.m2\repository\commons-chain\commons-chain\1.1\commons-chain-1.1.jar;C:\Users\DGrachev\.m2\repository\commons-validator\commons-validator\1.3.1\commons-validator-1.3.1.jar;C:\Users\DGrachev\.m2\repository\dom4j\dom4j\1.1\dom4j-1.1.jar;C:\Users\DGrachev\.m2\repository\oro\oro\2.0.8\oro-2.0.8.jar;C:\Users\DGrachev\.m2\repository\sslext\sslext\1.2-0\sslext-1.2-0.jar;C:\Users\DGrachev\.m2\repository\org\apache\struts\struts-core\1.3.8\struts-core-1.3.8.jar;C:\Users\DGrachev\.m2\repository\antlr\antlr\2.7.2\antlr-2.7.2.jar;C:\Users\DGrachev\.m2\repository\org\apache\struts\struts-taglib\1.3.8\struts-taglib-1.3.8.jar;C:\Users\DGrachev\.m2\repository\org\apache\struts\struts-tiles\1.3.8\struts-tiles-1.3.8.jar;C:\Users\DGrachev\.m2\repository\org\codehaus\plexus\plexus-archiver\4.2.2\plexus-archiver-4.2.2.jar;C:\Users\DGrachev\.m2\repository\org\apache\commons\commons-compress\1.20\commons-compress-1.20.jar;C:\Users\DGrachev\.m2\repository\org\iq80\snappy\snappy\0.4\snappy-0.4.jar;C:\Users\DGrachev\.m2\repository\org\tukaani\xz\1.8\xz-1.8.jar;C:\Users\DGrachev\.m2\repository\org\codehaus\plexus\plexus-utils\3.3.0\plexus-utils-3.3.0.jar;C:\Users\DGrachev\.m2\repository\org\apache\maven\shared\file-management\3.0.0\file-management-3.0.0.jar;C:\Users\DGrachev\.m2\repository\org\apache\maven\shared\maven-shared-io\3.0.0\maven-shared-io-3.0.0.jar;C:\Users\DGrachev\.m2\repository\org\apache\maven\maven-compat\3.0\maven-compat-3.0.jar;C:\Users\DGrachev\.m2\repository\org\apache\maven\wagon\wagon-provider-api\2.10\wagon-provider-api-2.10.jar;C:\Users\DGrachev\.m2\repository\org\codehaus\plexus\plexus-io\3.2.0\plexus-io-3.2.0.jar;C:\Users\DGrachev\.m2\repository\org\apache\maven\shared\maven-dependency-analyzer\1.11.1\maven-dependency-analyzer-1.11.1.jar;C:\Users\DGrachev\.m2\repository\org\ow2\asm\asm\7.0\asm-7.0.jar;C:\Users\DGrachev\.m2\repository\org\apache\maven\shared\maven-dependency-tree\3.0.1\maven-dependency-tree-3.0.1.jar;C:\Users\DGrachev\.m2\repository\org\eclipse\aether\aether-util\0.9.0.M2\aether-util-0.9.0.M2.jar;C:\Users\DGrachev\.m2\repository\org\apache\maven\shared\maven-common-artifact-filters\3.1.0\maven-common-artifact-filters-3.1.0.jar;C:\Users\DGrachev\.m2\repository\org\apache\maven\shared\maven-artifact-transfer\0.11.0\maven-artifact-transfer-0.11.0.jar;C:\Users\DGrachev\.m2\repository\commons-codec\commons-codec\1.11\commons-codec-1.11.jar;C:\Users\DGrachev\.m2\repository\org\apache\maven\shared\maven-shared-utils\3.2.1\maven-shared-utils-3.2.1.jar;C:\Users\DGrachev\.m2\repository\commons-lang\commons-lang\2.6\commons-lang-2.6.jar;C:\Users\DGrachev\.m2\repository\commons-collections\commons-collections\3.2.2\commons-collections-3.2.2.jar;C:\Users\DGrachev\.m2\repository\classworlds\classworlds\1.1\classworlds-1.1.jar;C:\Users\DGrachev\.m2\repository\io\cucumber\cucumber-java\6.8.1\cucumber-java-6.8.1.jar;C:\Users\DGrachev\.m2\repository\io\cucumber\cucumber-core\6.8.1\cucumber-core-6.8.1.jar;C:\Users\DGrachev\.m2\repository\io\cucumber\cucumber-gherkin\6.8.1\cucumber-gherkin-6.8.1.jar;C:\Users\DGrachev\.m2\repository\io\cucumber\cucumber-gherkin-messages\6.8.1\cucumber-gherkin-messages-6.8.1.jar;C:\Users\DGrachev\.m2\repository\io\cucumber\messages\13.1.0\messages-13.1.0.jar;C:\Users\DGrachev\.m2\repository\io\cucumber\tag-expressions\3.0.0\tag-expressions-3.0.0.jar;C:\Users\DGrachev\.m2\repository\io\cucumber\cucumber-expressions\10.3.0\cucumber-expressions-10.3.0.jar;C:\Users\DGrachev\.m2\repository\io\cucumber\datatable\3.5.0\datatable-3.5.0.jar;C:\Users\DGrachev\.m2\repository\io\cucumber\cucumber-plugin\6.8.1\cucumber-plugin-6.8.1.jar;C:\Users\DGrachev\.m2\repository\io\cucumber\docstring\6.8.1\docstring-6.8.1.jar;C:\Users\DGrachev\.m2\repository\io\cucumber\html-formatter\9.0.0\html-formatter-9.0.0.jar;C:\Users\DGrachev\.m2\repository\io\cucumber\create-meta\2.0.2\create-meta-2.0.2.jar;C:\Users\DGrachev\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\DGrachev\.m2\repository\info\cukes\cucumber-java\1.2.2\cucumber-java-1.2.2.jar
+java.vm.vendor=Oracle Corporation
+sun.arch.data.model=64
+idea.test.cyclic.buffer.size=1048576
+user.variant=
+java.vendor.url=https://java.oracle.com/
+user.timezone=Europe/Moscow
+java.vm.specification.version=14
+os.name=Windows 10
+sun.java.launcher=SUN_STANDARD
+user.country=RU
+sun.boot.library.path=C:\Program Files\Java\jdk-14\bin
+sun.java.command=com.intellij.rt.junit.JUnitStarter -ideVersion5 -junit4 CucumberRunner
+jdk.debug=release
+sun.cpu.endian=little
+user.home=C:\Users\DGrachev
+user.language=ru
+java.specification.vendor=Oracle Corporation
+java.version.date=2020-03-17
+java.home=C:\Program Files\Java\jdk-14
+file.separator=\
+java.vm.compressedOopsMode=32-bit
+line.separator=
+
+java.vm.specification.vendor=Oracle Corporation
+java.specification.name=Java Platform API Specification
+user.script=
+sun.management.compiler=HotSpot 64-Bit Tiered Compilers
+java.runtime.version=14+36-1461
+user.name=DGrachev
+path.separator=;
+os.version=10.0
+java.runtime.name=Java(TM) SE Runtime Environment
+file.encoding=UTF-8
+nodeNamesHandler=AsText
+java.vm.name=Java HotSpot(TM) 64-Bit Server VM
+java.vendor.url.bug=https://bugreport.java.com/bugreport/
+java.io.tmpdir=C:\Users\DGrachev\AppData\Local\Temp\
+java.version=14
+user.dir=C:\Users\DGrachev\IdeaProjects\Sber_autotestss
+os.arch=amd64
+java.vm.specification.name=Java Virtual Machine Specification
+sun.os.patch.level=
+java.library.path=C:\Program Files\Java\jdk-14\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Users\DGrachev\AppData\Local\Microsoft\WindowsApps;;.
+java.vm.info=mixed mode, sharing
+java.vendor=Oracle Corporation
+java.vm.version=14+36-1461
+sun.io.unicode.encoding=UnicodeLittle
+java.class.version=58.0
+---- Command Line ---
+Empty
+---- Full Classpath ---
+Empty
+---- Compiler Messages ---
+Empty

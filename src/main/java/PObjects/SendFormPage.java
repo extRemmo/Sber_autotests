@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import steps.BaseSteps;
 
 
-public class SendFormPage extends BaseSteps {
+public class SendFormPage extends BasePageObject {
 
     @FindBy(xpath = "//div[@class='online-card-program selected']")
     public WebElement minBtn;
@@ -20,15 +20,23 @@ public class SendFormPage extends BaseSteps {
     @FindBy(xpath = "//div[@class='col-12 centered-col']")
     public WebElement oformBtn;
 
+    @FindBy(xpath = "//a[text()='Выбор полиса']")
+    public WebElement title;
+
+    @FindBy(xpath = "//a[text()='Оформление']")
+    public WebElement secondTitle;
+
     public SendFormPage() {
         PageFactory.initElements(BaseSteps.getDriver(), this);
     }
 
-    public void selectPolicy(String menuItem1, String menuItem2) {
-        minBtn.findElement(By.xpath(".//h3[text()='"+menuItem1+"']")).click();
-        WebDriverWait wait = new WebDriverWait(driver, 5);
+    public void selectPolicy(String menuItem) {
+        minBtn.findElement(By.xpath(".//h3[text()='"+menuItem+"']")).click();
+    }
+    public void selectRegButton(String menuItem){
+        WebDriverWait wait = new WebDriverWait(BaseSteps.getDriver(), 5);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='col-12 centered-col']")));
-        oformBtn.findElement(By.xpath(".//button[contains(text(), '"+menuItem2+"')]")).click();
+        oformBtn.findElement(By.xpath(".//button[contains(text(), '"+menuItem+"')]")).click();
     }
 
     @FindBy(id = "surname_vzr_ins_0")
@@ -145,7 +153,7 @@ public class SendFormPage extends BaseSteps {
     }
 
 
-    protected void fillField(WebElement element, String value) {
+    public void fillField(WebElement element, String value) {
         element.clear();
         element.click();
         element.sendKeys(value);
