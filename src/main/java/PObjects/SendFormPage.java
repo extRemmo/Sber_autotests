@@ -4,32 +4,31 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import steps.BaseSteps;
 
 
-public class SendFormPage extends BaseSteps {
-
+public class SendFormPage {
+    WebDriver driver;
     @FindBy(xpath = "//div[@class='online-card-program selected']")
     public WebElement minBtn;
 
     @FindBy(xpath = "//div[@class='col-12 centered-col']")
     public WebElement oformBtn;
 
-    public SendFormPage() {
-        PageFactory.initElements(BaseSteps.getDriver(), this);
+    public SendFormPage(WebDriver driver) {
+        PageFactory.initElements(driver, this);
     }
 
-    public void selectPolicy(String menuItem1, String menuItem2) {
+    public void selectPolicy(String menuItem1, String menuItem2, WebDriver driver) {
         minBtn.findElement(By.xpath(".//h3[text()='"+menuItem1+"']")).click();
         WebDriverWait wait = new WebDriverWait(driver, 5);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='col-12 centered-col']")));
         oformBtn.findElement(By.xpath(".//button[contains(text(), '"+menuItem2+"')]")).click();
     }
+
 
     @FindBy(id = "surname_vzr_ins_0")
     public WebElement surname;
@@ -64,11 +63,11 @@ public class SendFormPage extends BaseSteps {
     @FindBy(id = "documentIssue")
     WebElement documentIssue;
 
-    @FindBy(xpath = "//div[@class='col-xl-3 col-md-4 col-12'][2]")
+    @FindBy(xpath = "//div[@class='row col-12 centered-col']")
     public WebElement continueButton;
 
-    public void selectContinue(String menuItem){
-        continueButton.findElement(By.xpath(".//button[contains(text(), '"+menuItem+"')]")).click();
+    public void Continue (String button){
+        continueButton.findElement(By.xpath("./div/button[contains(text(),'"+button+"')]")).click();
     }
 
     public void fillField(String fieldName, String value){
@@ -110,41 +109,12 @@ public class SendFormPage extends BaseSteps {
         }
     }
 
-    public String getFillField(String fieldName){
-        switch (fieldName){
-            case  "Фамилия / Surname":
-                return surname.getAttribute("value");
-            case  "Имя / Name":
-                return name.getAttribute("value");
-            case  "Дата рождения":
-                return birthDate.getAttribute("value");
-            case  "Фамилия":
-                return person_lastName.getAttribute("value");
-            case  "Имя":
-                return person_firstName.getAttribute("value");
-            case  "Отчество":
-                return person_middleName.getAttribute("value");
-            case  "Дата рождения2":
-                return person_birthDate.getAttribute("value");
-            case  "Серия паспорта":
-                return passportSeries.getAttribute("value");
-            case  "Номер паспорта":
-                return passportNumber.getAttribute("value");
-            case  "Дата выдачи":
-                return documentDate.getAttribute("value");
-            case  "Кем выдан":
-                return documentIssue.getAttribute("value");
-        }
-        throw new AssertionError("Поле не объявлено на странице");
-    }
-    public void checkFieldErrorMessage(String errorMessage){
+    public void checkFieldErrorMessage(String errorMessage, WebDriver driver){
         String xpath = "//*[@class = 'alert-form alert-form-error']";
-        String actualValue = BaseSteps.getDriver().findElement(By.xpath(xpath)).getText();
+        String actualValue = driver.findElement(By.xpath(xpath)).getText();
         Assert.assertTrue(String.format("Получено значение [%s]. Ожидалось [%s]", actualValue, errorMessage),
                 actualValue.contains(errorMessage));
     }
-
-
     protected void fillField(WebElement element, String value) {
         element.clear();
         element.click();
