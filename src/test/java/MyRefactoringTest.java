@@ -13,26 +13,25 @@ public class MyRefactoringTest extends BaseTest {
 
 
     @Test
-    @Ignore
     public void newInsuranceTest() throws InterruptedException {
         driver.get(baseUrl);
-        MainPage mainPage = new MainPage();
+        MainPage mainPage = new MainPage(driver);
 
         mainPage.selectMainMenu("Страхование");
         mainPage.selectSubMenu("СберСтрахование");
 
-        InsurePage insurePage = new InsurePage();
+        InsurePage insurePage = new InsurePage(driver);
         insurePage.selectTravelMenu("Оформить онлайн");
 
-        Thread.sleep(8000);
+        Thread.sleep(7000);
         ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs2.get(1));
 
-        TravelOnlinePage travelOnlinePage = new TravelOnlinePage();
+        TravelOnlinePage travelOnlinePage = new TravelOnlinePage(driver);
         travelOnlinePage.selectTravelOnline("Оформить онлайн");
 
-        SendFormPage sendFormPage = new SendFormPage();
-        sendFormPage.selectPolicy("Минимальная", "Оформить");
+        SendFormPage sendFormPage = new SendFormPage(driver);
+        sendFormPage.selectPolicy("Минимальная", "Оформить", driver);
 
         sendFormPage.fillField("Фамилия / Surname", "Грачев");
         sendFormPage.fillField("Имя / Name", "Дмитрий");
@@ -45,11 +44,9 @@ public class MyRefactoringTest extends BaseTest {
         sendFormPage.fillField("Номер паспорта", "999999");
         sendFormPage.fillField("Дата выдачи", "01012019");
         sendFormPage.fillField("Кем выдан", "Отделением УФМС России");
-        //new SendFormPage(driver).continueButton.click();
+        sendFormPage.Continue("Продолжить");
 
-        Assert.assertEquals("При заполнении данных произошла ошибка",
-                driver.findElement(By.xpath("//*[@class = 'alert-form alert-form-error']")).getText());
-        Thread.sleep(5000);
+        sendFormPage.checkFieldErrorMessage("При заполнении данных произошла ошибка", driver);
 
     }
 }
