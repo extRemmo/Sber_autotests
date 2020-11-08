@@ -1,8 +1,7 @@
-import org.junit.*;
+import org.junit.Assert;
+import org.junit.Test;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -13,49 +12,47 @@ public class InsuranceTest extends BaseTest {
 
 
     @Test
-    //@Ignore
     public void  testInsurance() throws Exception {
+        //Перейти на страницу http://www.sberbank.ru/ru/person
         driver.get(baseUrl);
-
+        //Нажать на – Страхование
         driver.findElement(By.xpath("//*[text() = 'Страхование'][contains(@class, 'kitt-top')]")).click();
+        //Нажать на – СберСтрахование
         driver.findElement(By.xpath("//*[text() = 'СберСтрахование'][contains(@class, 'kitt-top')]")).click();
+        //ожидается прогрузка и появление заголовка на странице
         Wait<WebDriver> wait = new WebDriverWait(driver, 5, 1000);
-
         WebElement title = driver.findElement(By.xpath("//h2[text() = 'Страхование путешественников']"));
         wait.until(ExpectedConditions.visibilityOf(title));
-
+        //Проверить наличие на странице заголовка – Страхование путешественников
         Assert.assertEquals("Страхование путешественников", title.getText());
+        //закрыть всплывающее окно
+        driver.findElement(By.xpath("//button[contains(@class, 'kitt-cookie-warning__close')]")).click();
+        //Нажать кнопку "Оформить онлайн" в разделе "Страхование путешественников"
+        WebElement onlButton = driver.findElement(By.xpath("//a[contains(@href, 'travel')]//span[contains(text(), 'Оформить онлайн')]"));
+        Actions act= new Actions(driver);
+        act.moveToElement(onlButton).click().build().perform();
 
-        driver.findElement(By.xpath("//a[contains(@href, 'travel')]//span[contains(text(), 'Оформить онлайн')]")).click();
-
-        Thread.sleep(8000);
+        //переключаем драйвер на новую вкладку в браузере
         ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs2.get(1));
-
-        WebElement applyOnlineBtn = driver.findElement(By.xpath("//a[@class='s-btn'][contains(text(),'Оформить онлайн')]"));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", applyOnlineBtn);
-
-        try{
-            applyOnlineBtn.click();
-        }catch (WebDriverException e){
-            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", applyOnlineBtn);
-        }
+        //Нажать на Оформить онлайн
+        driver.findElement(By.xpath("//a[contains(@class, 'banner')][contains(text(),'Оформить онлайн')]")).click();
 
         //На вкладке – Выбор полиса  выбрать сумму страховой защиты – Минимальная
         driver.findElement(By.xpath("//h3[contains(text(), 'Минимальная')]")).click();
-        Thread.sleep(5000);
-        driver.findElement(By.xpath("//button[contains(text(), 'Оформить')]")).click();
+        //Нажать Оформить
+        WebElement arrange = driver.findElement(By.xpath("//button[contains(text(), 'Оформить')]"));
+        Actions actToMin= new Actions(driver);
+        actToMin.moveToElement(arrange).click().build().perform();
 
-
-        Thread.sleep(5000);
+        //Ожидание появления вкладки "Оформление"
         WebElement titleReg = driver.findElement(By.xpath("//*[@class='col-4 step-element active']/a[text()='Оформление']"));
         wait.until(ExpectedConditions.visibilityOf(titleReg));
         Assert.assertEquals("Оформление", titleReg.getText());
-
+        //На вкладке "Оформление" заполнить поля:
         fillField (By.id("surname_vzr_ins_0"), "Грачев");
         fillField (By.id("name_vzr_ins_0"), "Дмитрий");
         fillField (By.id("birthDate_vzr_ins_0"), "29121993");
-
         driver.findElement(By.id("person_lastName")).click();
         fillField (By.id("person_lastName"), "Грачев");
         fillField (By.id("person_firstName"), "Дмитрий");
@@ -65,7 +62,6 @@ public class InsuranceTest extends BaseTest {
         WebElement element = driver.findElement(By.xpath("//div[@class='btn-group']/label[text()='Мужской']"));
         Actions actions = new Actions(driver);
         actions.moveToElement(element).click().perform();
-
 
         driver.findElement(By.id("passportSeries")).click();
         fillField (By.id("passportSeries"), "8888");
@@ -88,9 +84,9 @@ public class InsuranceTest extends BaseTest {
         Assert.assertEquals("999999", driver.findElement(By.id("passportNumber")).getAttribute("value"));
         Assert.assertEquals("01.01.2019", driver.findElement(By.id("documentDate")).getAttribute("value"));
         Assert.assertEquals("Отделением УФМС России", driver.findElement(By.id("documentIssue")).getAttribute("value"));
-
+        //Нажать продолжить
         driver.findElement(By.xpath("//button[contains(text(), 'Продолжить')]")).click();
-
+        //Проверить, что появилось сообщение - При заполнении данных произошла ошибка
         Assert.assertEquals("При заполнении данных произошла ошибка",
                 driver.findElement(By.xpath("//*[@class = 'alert-form alert-form-error']")).getText());
 
