@@ -12,15 +12,15 @@ public class InsuranceTest extends BaseTest {
 
 
     @Test
-    public void  testInsurance() throws Exception {
-        //Перейти на страницу http://www.sberbank.ru/ru/person
+    public void  testInsurance() throws InterruptedException {
+        //Перейти на страницу https://www.sberbank.ru/ru/person
         driver.get(baseUrl);
         //Нажать на – Страхование
         driver.findElement(By.xpath("//*[text() = 'Страхование'][contains(@class, 'kitt-top')]")).click();
         //Нажать на – СберСтрахование
         driver.findElement(By.xpath("//*[text() = 'СберСтрахование'][contains(@class, 'kitt-top')]")).click();
         //ожидается прогрузка и появление заголовка на странице
-        Wait<WebDriver> wait = new WebDriverWait(driver, 5, 1000);
+        Wait<WebDriver> wait = new WebDriverWait(driver, 10);
         WebElement title = driver.findElement(By.xpath("//h2[text() = 'Страхование путешественников']"));
         wait.until(ExpectedConditions.visibilityOf(title));
         //Проверить наличие на странице заголовка – Страхование путешественников
@@ -29,14 +29,20 @@ public class InsuranceTest extends BaseTest {
         driver.findElement(By.xpath("//button[contains(@class, 'kitt-cookie-warning__close')]")).click();
         //Нажать кнопку "Оформить онлайн" в разделе "Страхование путешественников"
         WebElement onlButton = driver.findElement(By.xpath("//a[contains(@href, 'travel')]//span[contains(text(), 'Оформить онлайн')]"));
-        Actions act= new Actions(driver);
-        act.moveToElement(onlButton).click().build().perform();
+        wait.until(ExpectedConditions.elementToBeClickable(onlButton));
+        onlButton.click();
+
 
         //переключаем драйвер на новую вкладку в браузере
-        ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
+        (new WebDriverWait(driver, 10)).until(ExpectedConditions.numberOfWindowsToBe(2));
+        ArrayList<String> tabs2 = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs2.get(1));
-        //Нажать на Оформить онлайн
-        driver.findElement(By.xpath("//a[contains(@class, 'banner')][contains(text(),'Оформить онлайн')]")).click();
+
+        //Нажать на Оформить онлайн, дожидаясь кликабельности элемента
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@class='s-hero-banner__btn s-btn']")));
+        System.out.println(driver.getTitle());
+        WebElement applyOnlineBtn = driver.findElement(By.xpath("//a[contains(@class, 'banner')][contains(text(),'Оформить онлайн')]"));
+        applyOnlineBtn.click();
 
         //На вкладке – Выбор полиса  выбрать сумму страховой защиты – Минимальная
         driver.findElement(By.xpath("//h3[contains(text(), 'Минимальная')]")).click();
