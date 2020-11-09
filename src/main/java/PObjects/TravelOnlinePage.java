@@ -29,8 +29,6 @@ public class TravelOnlinePage  {
         //Нажать на Оформить онлайн, дожидаясь кликабельности элемента
         Wait<WebDriver> wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@class='s-hero-banner__btn s-btn']")));
-        System.out.println(driver.getTitle());
-        //WebElement applyOnlineBtn = driver.findElement(By.xpath("//a[contains(@class, 'banner')][contains(text(),'Оформить онлайн')]"));
         applyOnlineButton.findElement(By.xpath(".//a[contains(text(),'"+menuItem+"')]")).click();
     }
 }
