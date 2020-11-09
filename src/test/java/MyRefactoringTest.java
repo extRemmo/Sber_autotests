@@ -23,12 +23,8 @@ public class MyRefactoringTest extends BaseTest {
         InsurePage insurePage = new InsurePage(driver);
         insurePage.selectTravelMenu("Оформить онлайн");
 
-        Thread.sleep(7000);
-        ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
-        driver.switchTo().window(tabs2.get(1));
-
         TravelOnlinePage travelOnlinePage = new TravelOnlinePage(driver);
-        travelOnlinePage.selectTravelOnline("Оформить онлайн");
+        travelOnlinePage.selectTravelOnline("Оформить онлайн", driver);
 
         SendFormPage sendFormPage = new SendFormPage(driver);
         sendFormPage.selectPolicy("Минимальная", "Оформить", driver);
