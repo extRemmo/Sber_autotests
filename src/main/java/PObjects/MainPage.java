@@ -1,5 +1,6 @@
 package PObjects;
 
+import Steps.BaseSteps;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,8 +16,8 @@ public class MainPage {
     @FindBy(xpath = "//li[contains(@class, 'kitt-top-menu__item_opened')]")
     WebElement subMenu;
 
-    public MainPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
+    public MainPage() {
+        PageFactory.initElements(BaseSteps.getDriver(), this);
     }
 
     public void selectMainMenu(String menuItem){

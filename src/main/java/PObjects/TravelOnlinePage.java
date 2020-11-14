@@ -1,5 +1,6 @@
 package PObjects;
 
+import Steps.BaseSteps;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -7,24 +8,22 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.ArrayList;
 
-
-public class TravelOnlinePage  {
+public class TravelOnlinePage extends BaseSteps {
 
     @FindBy(xpath = "//div[@class='s-hero-banner__content']")
     public WebElement applyOnlineButton;
 
 
-    public TravelOnlinePage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
+    public TravelOnlinePage() {
+        PageFactory.initElements(BaseSteps.getDriver(), this);
     }
 
-    public void selectTravelOnline(String menuItem, WebDriver driver) {
+    public void selectTravelOnline(String menuItem) {
         //переключаем драйвер на новую вкладку в браузере
-        (new WebDriverWait(driver, 10)).until(ExpectedConditions.numberOfWindowsToBe(2));
+        /*(new WebDriverWait(driver, 10)).until(ExpectedConditions.numberOfWindowsToBe(2));
         ArrayList<String> tabs2 = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(tabs2.get(1));
+        driver.switchTo().window(tabs2.get(1));*/
 
         //Нажать на Оформить онлайн, дожидаясь кликабельности элемента
         Wait<WebDriver> wait = new WebDriverWait(driver, 10);
