@@ -1,18 +1,17 @@
 package PObjects;
 
+import Steps.BaseSteps;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import steps.BaseSteps;
 
 
-public class SendFormPage extends BaseSteps {
+public class SendFormPage extends BasePageObject  {
 
     @FindBy(xpath = "//div[@class='online-card-program selected']")
     public WebElement minBtn;
@@ -20,16 +19,25 @@ public class SendFormPage extends BaseSteps {
     @FindBy(xpath = "//div[@class='col-12 centered-col']")
     public WebElement oformBtn;
 
+    @FindBy(xpath = "//a[text()='Выбор полиса']")
+    public WebElement title;
+
+    @FindBy(xpath = "//a[text()='Оформление']")
+    public WebElement secondTitle;
+
     public SendFormPage() {
         PageFactory.initElements(BaseSteps.getDriver(), this);
     }
 
-    public void selectPolicy(String menuItem1, String menuItem2) {
-        minBtn.findElement(By.xpath(".//h3[text()='"+menuItem1+"']")).click();
-        WebDriverWait wait = new WebDriverWait(driver, 5);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='col-12 centered-col']")));
-        oformBtn.findElement(By.xpath(".//button[contains(text(), '"+menuItem2+"')]")).click();
+    public void selectPolicy(String menuItem) {
+        minBtn.findElement(By.xpath(".//h3[text()='"+menuItem+"']")).click();
     }
+    public void selectRegButton(String menuItem){
+        WebDriverWait wait = new WebDriverWait(BaseSteps.getDriver(), 5);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='col-12 centered-col']")));
+        oformBtn.findElement(By.xpath(".//button[contains(text(), '"+menuItem+"')]")).click();
+    }
+
 
     @FindBy(id = "surname_vzr_ins_0")
     public WebElement surname;
@@ -64,11 +72,11 @@ public class SendFormPage extends BaseSteps {
     @FindBy(id = "documentIssue")
     WebElement documentIssue;
 
-    @FindBy(xpath = "//div[@class='col-xl-3 col-md-4 col-12'][2]")
+    @FindBy(xpath = "//div[@class='row col-12 centered-col']")
     public WebElement continueButton;
 
-    public void selectContinue(String menuItem){
-        continueButton.findElement(By.xpath(".//button[contains(text(), '"+menuItem+"')]")).click();
+    public void Continue (String button){
+        continueButton.findElement(By.xpath("./div/button[contains(text(),'"+button+"')]")).click();
     }
 
     public void fillField(String fieldName, String value){
@@ -137,15 +145,14 @@ public class SendFormPage extends BaseSteps {
         }
         throw new AssertionError("Поле не объявлено на странице");
     }
+
     public void checkFieldErrorMessage(String errorMessage){
         String xpath = "//*[@class = 'alert-form alert-form-error']";
         String actualValue = BaseSteps.getDriver().findElement(By.xpath(xpath)).getText();
         Assert.assertTrue(String.format("Получено значение [%s]. Ожидалось [%s]", actualValue, errorMessage),
                 actualValue.contains(errorMessage));
     }
-
-
-    protected void fillField(WebElement element, String value) {
+    public  void fillField(WebElement element, String value) {
         element.clear();
         element.click();
         element.sendKeys(value);

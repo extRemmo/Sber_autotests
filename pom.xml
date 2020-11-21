@@ -5,14 +5,16 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.appline.autotest</groupId>
-    <artifactId>Sber_autotestss</artifactId>
+    <artifactId>Sber_autotests_import</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <name>Sber_autotests_import Sberbank</name>
+    <url>http://maven.apache.org</url>
 
     <properties>
         <maven.compiler.source>1.14</maven.compiler.source>
         <maven.compiler.target>1.14</maven.compiler.target>
         <allure.version>1.5.4</allure.version>
-        <aspectj.version>1.8.9</aspectj.version>
+        <aspectj.version>1.9.6</aspectj.version>
         <compiler.version>1.8</compiler.version>
 
     </properties>
@@ -30,8 +32,8 @@
         </dependency>
         <dependency>
             <groupId>ru.yandex.qatools.allure</groupId>
-            <artifactId>allure-junit-adaptor</artifactId>
-            <version>${allure.version}</version>
+            <artifactId>allure-cucumber-jvm-adaptor</artifactId>
+            <version>1.6.4</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -59,6 +61,11 @@
             <version>6.8.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>1.2.2</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -68,17 +75,21 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
                 <configuration>
+                    <includes>
+                        <include>**/CucumberRunner.java</include>
+                    </includes>
                     <testFailureIgnore>true</testFailureIgnore>
                     <argLine>
-                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                        -Dfile.encoding=UTF-8 -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
                     </argLine>
-                    <properties>
-                        <property>
-                            <name>listener</name>
-                            <value>util.AllureListener</value>
-                        </property>
-                    </properties>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
             <plugin>
                 <groupId>ru.yandex.qatools.allure</groupId>
