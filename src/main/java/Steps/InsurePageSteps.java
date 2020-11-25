@@ -14,6 +14,12 @@ public class InsurePageSteps  {
                 actualTitle, expectedTitle), actualTitle.contains(expectedTitle));
     }
 
+    @Step("^название страницы {0}")
+    public void checkMainPageTitle(String expectedTitle){
+        String actualTitle = new InsurePage().mainTitle.getText();
+        assertTrue(String.format("Заголовок равен [%s]. Ожидалось - [%s]",
+                actualTitle, expectedTitle), actualTitle.contains(expectedTitle));
+    }
 
     @Step("выполнено нажатие на кнопку {0}")
     public void selectTravelMenu(String menuItem){

@@ -18,6 +18,10 @@ public class InsurePage extends BasePageObject {
     @FindBy(xpath = "//div[@id = 'allrecords']/div[5]//div/div/div[13]/div")
     public WebElement title;
 
+    @FindBy(xpath = "/html/body/div[1]/div[2]/div/div/div[2]/div/div/div[1]/div/div/div[4]/div")
+    public WebElement mainTitle;
+
+
     @FindBy(xpath = "//ul[contains(@class, 'top-menu__list_center')]")
     WebElement closeBtn;
 

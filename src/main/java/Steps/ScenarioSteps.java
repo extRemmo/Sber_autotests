@@ -23,7 +23,12 @@ public class ScenarioSteps  {
         mainPageSteps.selectSubMenu(menuName);
     }
 
-    @Then("^заголовок страницы \"(.+)\"$")
+    @Then ("^название страницы \"(.+)\"$")
+    public void checkMainTitleInsurePage(String title){
+        insurePageSteps.checkMainPageTitle(title);
+    }
+
+    @When("^заголовок страницы \"(.+)\"$")
     public void checkTitleInsurePage(String title){
         insurePageSteps.checkPageTitle(title);
     }
